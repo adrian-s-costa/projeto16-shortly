@@ -1,4 +1,4 @@
-import { nanoid, customAlphabet } from "nanoid";
+import { nanoid } from "nanoid";
 import connection from "../dbStrategy/postgres.js";
 
 export async function postUrl (req, res){
@@ -16,11 +16,25 @@ export async function getUrl (req, res){
       return res.sendStatus(404);
     }
 
-    res.send(
+    return res.send(
         {
             id: idExistent.rows[0].id,
             url: idExistent.rows[0].url,
             shortUrl: idExistent.rows[0].shortUrl
         }
     );
+}
+
+export async function openShortUrl (req, res){
+    const shortUrl = req.params.shortUrl;
+    const shortUrlQuery = await connection.query('SELECT url FROM urls WHERE "shortUrl" = $1', [shortUrl]);
+
+    if(!shortUrlQuery.rowCount){
+        return res.sendStatus(404);
+    }
+
+    await connection.query('UPDATE urls SET "visitCount" = "visitCount" + 1 WHERE "shortUrl" = $1', [shortUrl]);
+
+    return res.redirect(shortUrlQuery.rows[0].url);
+
 }
