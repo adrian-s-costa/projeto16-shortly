@@ -36,5 +36,10 @@ export async function openShortUrl (req, res){
     await connection.query('UPDATE urls SET "visitCount" = "visitCount" + 1 WHERE "shortUrl" = $1', [shortUrl]);
 
     return res.redirect(shortUrlQuery.rows[0].url);
+}
 
+export async function deleteUrl (req, res){
+    const id = req.params.id;
+    await connection.query('DELETE FROM urls WHERE id = $1', [id]);
+    return res.sendStatus(204);
 }
