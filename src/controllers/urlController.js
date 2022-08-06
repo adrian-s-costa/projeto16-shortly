@@ -1,7 +1,7 @@
 import { nanoid, customAlphabet } from "nanoid";
 import connection from "../dbStrategy/postgres.js";
 
-export default async function postUrl (req, res){
+export async function postUrl (req, res){
     const url = req.body.url;
     const shortUrl = url && nanoid(10);
     await connection.query('INSERT INTO urls ("shortUrl", url, "visitCount", "userId") VALUES ($1, $2, $3, $4)', [shortUrl, url, 0, req.id]);
