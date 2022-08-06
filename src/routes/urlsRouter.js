@@ -8,7 +8,7 @@ const router = Router();
 
 router.post("/urls/shorten", urlValidate, jwtValidation, postUrl);
 router.get("/urls/:id", getUrl);
-router.get("/urls/open/:shortUrl", openShortUrl)
-router.delete("/urls/:id", jwtValidation, deleteValidate, deleteUrl)
+router.get("/urls/open/:shortUrl", openShortUrl);
+router.delete("/urls/:id", jwtValidation, deleteValidate, deleteUrl);
 
 export default router;
