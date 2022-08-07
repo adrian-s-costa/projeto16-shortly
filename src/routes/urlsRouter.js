@@ -6,9 +6,9 @@ import { getUrl, postUrl, openShortUrl, deleteUrl } from '../controllers/urlCont
 
 const router = Router();
 
-router.post("/urls/shorten", urlValidate, jwtValidation, postUrl);
-router.get("/urls/:id", getUrl);
-router.get("/urls/open/:shortUrl", openShortUrl);
-router.delete("/urls/:id", jwtValidation, deleteValidate, deleteUrl);
+router.post("https://back-shortly-api-a.herokuapp.com/urls/shorten", urlValidate, jwtValidation, postUrl);
+router.get("https://back-shortly-api-a.herokuapp.com/urls/:id", getUrl);
+router.get("https://back-shortly-api-a.herokuapp.com/urls/open/:shortUrl", openShortUrl);
+router.delete("https://back-shortly-api-a.herokuapp.com/urls/:id", jwtValidation, deleteValidate, deleteUrl);
 
 export default router;
