@@ -5,6 +5,7 @@ CREATE TABLE users (
     name TEXT NOT NULL,
 	email TEXT NOT NULL UNIQUE,
 	password TEXT NOT NULL,
+	token TEXT,
 	"createdAt" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
 );
 
