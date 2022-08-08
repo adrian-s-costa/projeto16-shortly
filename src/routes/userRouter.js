@@ -4,6 +4,6 @@ import getMyUser from '../controllers/userController.js';
 
 const router = Router();
 
-router.get("https://back-shortly-api-a.herokuapp.com/users/me", jwtValidation, getMyUser);
+router.get("/users/me", jwtValidation, getMyUser);
 
 export default router;

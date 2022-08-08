@@ -5,7 +5,7 @@ import { signInValidate } from '../middlewares/signInValidator.js';
 
 const router = Router();
 
-router.post("https://back-shortly-api-a.herokuapp.com/signup", signUpValidate, postSignUp);
-router.post("https://back-shortly-api-a.herokuapp.com/signin", signInValidate, postSignIn);
+router.post("/signup", signUpValidate, postSignUp);
+router.post("/signin", signInValidate, postSignIn);
 
 export default router;
