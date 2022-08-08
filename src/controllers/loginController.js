@@ -15,10 +15,9 @@ export async function postSignUp (req, res) {
 
 export async function postSignIn(req, res){
     try{
-        console.log(req.body.email);
         const user = await connection.query('SELECT * FROM users WHERE email = $1', [req.body.email]);
         const token = jwt.sign({id: user.rows[0].id}, process.env.JWT_ACCESS_SECRET, { expiresIn: 600});
-        connection.query('UPDATE users SET token=$1 WHERE id = $2;', [token, user.rows[0].id]);
+        await connection.query('UPDATE users SET token=$1 WHERE id = $2;', [token, user.rows[0].id]);
         return res.send(token).status(200);
     }
     catch{
